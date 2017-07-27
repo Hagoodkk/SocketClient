@@ -2,11 +2,31 @@ package com.example.project.SessionManager;
 
 import com.example.project.Serializable.BuddyList;
 
+import java.net.Socket;
+
 public class SessionManager {
     private static SessionManager sessionManager;
 
     private String username;
+    private Socket clientSocket;
     private BuddyList buddyList;
+    private String messageRecipient;
+
+    public String getMessageRecipient() {
+        return messageRecipient;
+    }
+
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
+
+    public void setClientSocket(Socket clientSocket) {
+        this.clientSocket = clientSocket;
+    }
+
+    public void setMessageRecipient(String messageRecipient) {
+        this.messageRecipient = messageRecipient;
+    }
 
     private SessionManager() {}
 

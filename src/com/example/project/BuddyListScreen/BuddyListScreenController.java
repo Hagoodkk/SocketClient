@@ -1,5 +1,6 @@
 package com.example.project.BuddyListScreen;
 
+import com.example.project.ChatWindow.ChatWindow;
 import com.example.project.Serializable.BuddyList;
 import com.example.project.SessionManager.SessionManager;
 import javafx.collections.FXCollections;
@@ -24,7 +25,13 @@ public class BuddyListScreenController {
     public void handleMouseClick(MouseEvent mouseEvent) {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
-                System.out.println(buddyListView.getSelectionModel().getSelectedItem());
+                sessionManager.setMessageRecipient(buddyListView.getSelectionModel().getSelectedItem().toString());
+                ChatWindow chatWindow = new ChatWindow();
+                try {
+                    chatWindow.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

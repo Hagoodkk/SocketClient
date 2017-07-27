@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class WelcomeScreenController {
     @FXML
@@ -42,18 +41,12 @@ public class WelcomeScreenController {
 
         try {
             Socket clientSocket = new Socket(HOST_NAME, PORT_NUMBER);
+            sessionManager.setClientSocket(clientSocket);
             ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
             UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername(), "");
             oos.writeObject(userCredentials);
-            ois.readObject();
-            ArrayList<String> buddies = new ArrayList<>();
-            buddies.add("Carl");
-            buddies.add("Bob");
-            buddies.add("Joan");
-            BuddyList buddyList = new BuddyList(buddies);
-            oos.writeObject(buddyList);
-            buddyList = (BuddyList) ois.readObject();
+            BuddyList buddyList = (BuddyList) ois.readObject();
             sessionManager.setBuddyList(buddyList);
             showBuddyList();
         } catch (IOException ioe) {
@@ -61,7 +54,6 @@ public class WelcomeScreenController {
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
         }
-
     }
 
     public void showBuddyList() {

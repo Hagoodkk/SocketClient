@@ -14,7 +14,7 @@ public class BuddyList implements Serializable {
         this.currentlyOnline = new ArrayList<>();
     }
     public void setBuddyList(ArrayList<String> buddyList) { this.buddyList = buddyList; }
-    public ArrayList<String> getBuddyList() { return this.buddyList; }
+    public ArrayList<String> getBuddies() { return this.buddyList; }
 
     public ArrayList<String> getCurrentlyOnline() {
         return currentlyOnline;
