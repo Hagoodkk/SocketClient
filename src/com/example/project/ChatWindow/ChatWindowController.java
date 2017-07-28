@@ -11,13 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import java.io.*;
-import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class ChatWindowController {
     @FXML
     TextField input_field;
@@ -26,53 +19,9 @@ public class ChatWindowController {
     @FXML
     Button send_button;
 
-    SessionManager sessionManager = SessionManager.getInstance();
-    private String messageRecipient;
-    private String username;
-    private Socket clientSocket = sessionManager.getClientSocket();
-
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
-
-    private Queue<String> messageQueue = new LinkedList<>();
-
-    public void initialize() {
-        messageRecipient = sessionManager.getMessageRecipient();
-        username = sessionManager.getUsername();
-        try {
-            oos = new ObjectOutputStream(clientSocket.getOutputStream());
-            ois = new ObjectInputStream(clientSocket.getInputStream());
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Message message = new Message(username, messageRecipient, "");
-                if (messageQueue.isEmpty()) {
-                    message.setNullMessage(true);
-                } else {
-                    message.setMessage(messageQueue.remove());
-                }
-
-                try {
-                    oos.writeObject(message);
-                    oos.flush();
-                    Message incomingMessage = (Message) ois.readObject();
-                    if (!incomingMessage.isNullMessage()) {
-                        System.out.println(incomingMessage.getMessage());
-                        getMessage(incomingMessage.getMessage());
-                    }
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                } catch (ClassNotFoundException cnfe) {
-                    cnfe.printStackTrace();
-                }
-            }
-        }, 0, 250);
-    }
+    private SessionManager sessionManager = SessionManager.getInstance();
+    private String username = sessionManager.getUsername();
+    private String recipient = sessionManager.getMessageRecipient();
 
     public void handleMouseClick(MouseEvent mouseEvent) {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
@@ -88,15 +37,14 @@ public class ChatWindowController {
 
     public void sendMessage() {
         String message = input_field.getText();
+        if (message.length() == 0) return;
+        Message outgoingMessage = new Message(username, recipient, message);
+        sessionManager.addOutgoingMessage(outgoingMessage);
         text_field.appendText("\n");
         text_field.appendText(username + ": " + message);
         input_field.clear();
         input_field.requestFocus();
-        messageQueue.add(message);
     }
 
-    public void getMessage(String message) {
-        text_field.appendText("\n");
-        text_field.appendText(messageRecipient + ": " + message);
-    }
+
 }

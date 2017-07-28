@@ -8,6 +8,10 @@ public class Message implements Serializable{
 
     public Message() {}
 
+    public Message(boolean nullMessage) {
+        if (nullMessage) this.nullMessage = true;
+    }
+
     public Message(String sender, String recipient, String message) {
         this.sender = sender;
         this.recipient = recipient;

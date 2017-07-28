@@ -1,8 +1,11 @@
 package com.example.project.SessionManager;
 
 import com.example.project.Serializable.BuddyList;
+import com.example.project.Serializable.Message;
 
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SessionManager {
     private static SessionManager sessionManager;
@@ -11,6 +14,7 @@ public class SessionManager {
     private Socket clientSocket;
     private BuddyList buddyList;
     private String messageRecipient;
+    private Queue<Message> outgoingQueue;
 
     public String getMessageRecipient() {
         return messageRecipient;
@@ -28,6 +32,14 @@ public class SessionManager {
         this.messageRecipient = messageRecipient;
     }
 
+    public Queue<Message> getOutgoingQueue() {
+        return outgoingQueue;
+    }
+
+    public void addOutgoingMessage(Message message) {
+        outgoingQueue.add(message);
+    }
+
     private SessionManager() {}
 
     public String getUsername() { return this.username; }
@@ -38,6 +50,7 @@ public class SessionManager {
     public static SessionManager getInstance() {
         if (sessionManager == null) {
             sessionManager = new SessionManager();
+            sessionManager.outgoingQueue = new LinkedList<>();
         }
         return sessionManager;
     }
