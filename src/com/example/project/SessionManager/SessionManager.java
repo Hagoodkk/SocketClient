@@ -1,9 +1,10 @@
 package com.example.project.SessionManager;
 
+import com.example.project.ChatWindow.ChatWindowController;
 import com.example.project.Serializable.BuddyList;
 import com.example.project.Serializable.Message;
-
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -13,11 +14,19 @@ public class SessionManager {
     private String username;
     private Socket clientSocket;
     private BuddyList buddyList;
-    private String messageRecipient;
     private Queue<Message> outgoingQueue;
+    private HashMap<String, ChatWindowController> chatWindowControllers;
 
-    public String getMessageRecipient() {
-        return messageRecipient;
+    public void addChatWindowController(String username, String recipient, ChatWindowController chatWindowController) {
+        chatWindowControllers.put(username + " -> " + recipient, chatWindowController);
+    }
+
+    public void removeChatWindowController(String username, String recipient) {
+        chatWindowControllers.remove(username + " -> " + recipient);
+    }
+
+    public ChatWindowController getChatWindowController(String username, String recipient) {
+        return chatWindowControllers.get(username + " -> " + recipient);
     }
 
     public Socket getClientSocket() {
@@ -26,10 +35,6 @@ public class SessionManager {
 
     public void setClientSocket(Socket clientSocket) {
         this.clientSocket = clientSocket;
-    }
-
-    public void setMessageRecipient(String messageRecipient) {
-        this.messageRecipient = messageRecipient;
     }
 
     public Queue<Message> getOutgoingQueue() {
@@ -51,6 +56,7 @@ public class SessionManager {
         if (sessionManager == null) {
             sessionManager = new SessionManager();
             sessionManager.outgoingQueue = new LinkedList<>();
+            sessionManager.chatWindowControllers = new HashMap<>();
         }
         return sessionManager;
     }

@@ -20,8 +20,8 @@ public class ChatWindowController {
     Button send_button;
 
     private SessionManager sessionManager = SessionManager.getInstance();
-    private String username = sessionManager.getUsername();
-    private String recipient = sessionManager.getMessageRecipient();
+    private String username;
+    private String recipient;
 
     public void handleMouseClick(MouseEvent mouseEvent) {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
@@ -46,5 +46,14 @@ public class ChatWindowController {
         input_field.requestFocus();
     }
 
+    public void initData(String username, String recipient) {
+        this.username = username;
+        this.recipient = recipient;
+    }
+
+    public void appendText(String sender, String message) {
+        text_field.appendText("\n");
+        text_field.appendText(sender + ": " + message);
+    }
 
 }

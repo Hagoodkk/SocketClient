@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class BuddyListScreen {
 
     public void start() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("BuddyListScreen.fxml"));
+        Parent root = new FXMLLoader(getClass().getResource("BuddyListScreen.fxml")).load();
         Stage buddyListStage = new Stage();
         buddyListStage.setTitle("Buddy List");
         buddyListStage.setScene(new Scene(root, 268, 777));
