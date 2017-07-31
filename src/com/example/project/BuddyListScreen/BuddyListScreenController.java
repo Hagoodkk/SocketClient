@@ -30,15 +30,14 @@ public class BuddyListScreenController {
     private SessionManager sessionManager = SessionManager.getInstance();
     private Socket clientSocket = sessionManager.getClientSocket();
     private String username = sessionManager.getUsername();
+    private int ithSecond;
 
     private ObjectOutputStream toServer;
     private ObjectInputStream fromServer;
 
     @FXML
     public void initialize() {
-        BuddyList buddyList = sessionManager.getBuddyList();
-        ObservableList<String> items = FXCollections.observableArrayList(buddyList.getCurrentlyOnline());
-        buddyListView.setItems(items);
+        buildBuddyList(sessionManager.getBuddyList());
         try {
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             fromServer = new ObjectInputStream(clientSocket.getInputStream());
@@ -46,6 +45,7 @@ public class BuddyListScreenController {
             ioe.printStackTrace();
         }
 
+        ithSecond = 0;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -56,10 +56,17 @@ public class BuddyListScreenController {
                 } else {
                     serverOutbound = sessionManager.getOutgoingQueue().remove();
                 }
+                if (ithSecond == 1000) {
+                    serverOutbound.setBuddyListUpdate(true);
+                    serverOutbound.setBuddyList(sessionManager.getBuddyList());
+                    ithSecond = 0;
+                } else ithSecond++;
+
                 try {
                     toServer.writeObject(serverOutbound);
                     toServer.flush();
                     Message serverInbound = (Message) fromServer.readObject();
+                    if (serverInbound.isBuddyListUpdate()) buildBuddyList(serverInbound.getBuddyList());
                     if (!serverInbound.isNullMessage()) {
                         System.out.println(serverInbound.getMessage());
                         ChatWindowController controller =
@@ -75,6 +82,11 @@ public class BuddyListScreenController {
                 }
             }
         }, 0, 1);
+    }
+
+    private void buildBuddyList(BuddyList buddyList) {
+        ObservableList<String> listViewItems = FXCollections.observableArrayList(buddyList.getCurrentlyOnline());
+        buddyListView.setItems(listViewItems);
     }
 
     public void handleMouseClick(MouseEvent mouseEvent) {

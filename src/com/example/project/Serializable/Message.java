@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Message implements Serializable{
     private String sender, recipient, message;
-    private boolean error, nullMessage;
+    private boolean error, nullMessage, buddyListUpdate;
+    private BuddyList buddyList;
 
     public Message() {}
 
@@ -18,6 +19,23 @@ public class Message implements Serializable{
         this.message = message;
         this.error = false;
         this.nullMessage = false;
+        this.buddyListUpdate = false;
+    }
+
+    public boolean isBuddyListUpdate() {
+        return buddyListUpdate;
+    }
+
+    public void setBuddyListUpdate(boolean buddyListUpdate) {
+        this.buddyListUpdate = buddyListUpdate;
+    }
+
+    public BuddyList getBuddyList() {
+        return buddyList;
+    }
+
+    public void setBuddyList(BuddyList buddyList) {
+        this.buddyList = buddyList;
     }
 
     public String getMessage() {
