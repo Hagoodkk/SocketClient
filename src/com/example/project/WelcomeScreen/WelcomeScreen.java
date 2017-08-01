@@ -19,6 +19,8 @@ public class WelcomeScreen extends Application {
         Stage welcomeScreenStage = new Stage();
         welcomeScreenStage.setTitle("Chat Program");
         welcomeScreenStage.setScene(new Scene(root, 300, 275));
+        welcomeScreenStage.setMinHeight(275);
+        welcomeScreenStage.setMinWidth(300);
         welcomeScreenStage.show();
     }
 

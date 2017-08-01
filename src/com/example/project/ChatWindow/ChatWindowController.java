@@ -26,6 +26,8 @@ public class ChatWindowController {
     private SessionManager sessionManager = SessionManager.getInstance();
     private String username;
     private String recipient;
+    private boolean firstMessage = true;
+    private boolean sentLastMessage = false;
 
     public void handleMouseClick(MouseEvent mouseEvent) {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
@@ -45,9 +47,12 @@ public class ChatWindowController {
         Message outgoingMessage = new Message(username, recipient, message);
         sessionManager.addOutgoingMessage(outgoingMessage);
         text_field.appendText("\n");
-        text_field.appendText(username + ": " + message);
+        if (!sentLastMessage || firstMessage) text_field.appendText(username + "\n");
+        text_field.appendText(message);
         input_field.clear();
         input_field.requestFocus();
+        sentLastMessage = true;
+        firstMessage = false;
     }
 
     public void initData(String username, String recipient) {
@@ -56,8 +61,12 @@ public class ChatWindowController {
     }
 
     public void appendText(String sender, String message) {
+        if (username.equals(sender)) return;
         text_field.appendText("\n");
-        text_field.appendText(sender + ": " + message);
+        if (sentLastMessage || firstMessage) text_field.appendText(sender + "\n");
+        text_field.appendText(message);
+        sentLastMessage = false;
+        firstMessage = false;
     }
 
     public void shutdown() {

@@ -27,6 +27,8 @@ public class BuddyListScreen {
         buddyListStage.setX(primaryScreenBounds.getMinX());
         buddyListStage.setY(primaryScreenBounds.getMinY());
         buddyListStage.setOnCloseRequest(e -> buddyListScreenController.shutdown());
+        buddyListStage.setMinHeight(height/4);
+        buddyListStage.setMinWidth(width/2);
         buddyListStage.show();
     }
 }

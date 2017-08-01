@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="763.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.project.BuddyListScreen.BuddyListScreenController">
+
+<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="826.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.project.BuddyListScreen.BuddyListScreenController">
    <children>
-      <ListView fx:id="buddyListView" layoutY="27.0" prefHeight="736.0" prefWidth="257.0"
-      onMouseClicked="#handleMouseClick"/>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="257.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <ListView fx:id="buddyListView" layoutX="63.0" layoutY="72.0" prefHeight="754.0" prefWidth="234.0"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="72.0" onMouseClicked="#handleMouseClick"/>
    </children>
-</Pane>
+</AnchorPane>

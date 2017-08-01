@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +24,6 @@ import java.util.TimerTask;
 public class BuddyListScreenController {
     @FXML
     ListView buddyListView;
-
-    @FXML
-    Parent root;
 
     private Timer timer;
 
