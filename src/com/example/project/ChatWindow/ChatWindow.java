@@ -2,8 +2,10 @@ package com.example.project.ChatWindow;
 
 import com.example.project.SessionManager.SessionManager;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ChatWindow {
@@ -18,10 +20,13 @@ public class ChatWindow {
         ChatWindowController controller = loader.getController();
         sessionManager.addChatWindowController(username, recipient, controller);
         controller.initData(username, recipient);
-        Stage buddyListStage = new Stage();
-        buddyListStage.setTitle(username + " -> " + recipient);
-        buddyListStage.setScene(new Scene(root, 502, 344));
-        buddyListStage.show();
+        Stage chatWindowStage = new Stage();
+        chatWindowStage.setTitle(username + " -> " + recipient);
+
+        chatWindowStage.setScene(new Scene(root, 502, 344));
+        chatWindowStage.setOnCloseRequest(e -> controller.shutdown());
+
+        chatWindowStage.show();
     }
 
     public void initData(String username, String recipient) {

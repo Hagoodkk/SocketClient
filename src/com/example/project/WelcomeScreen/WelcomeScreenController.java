@@ -57,8 +57,7 @@ public class WelcomeScreenController {
     }
 
     public void showBuddyList() {
-        Stage currentStage = (Stage) root.getScene().getWindow();
-        currentStage.hide();
+        hideStage();
         username_field.clear();
         password_field.clear();
         username_field.requestFocus();
@@ -75,5 +74,15 @@ public class WelcomeScreenController {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             handleSignInButtonAction(new ActionEvent());
         }
+    }
+
+    public void showStage() {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.show();
+    }
+
+    public void hideStage() {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.hide();
     }
 }

@@ -3,6 +3,7 @@ package com.example.project.ChatWindow;
 import com.example.project.Serializable.Message;
 import com.example.project.SessionManager.SessionManager;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class ChatWindowController {
     @FXML
@@ -18,6 +20,8 @@ public class ChatWindowController {
     TextArea text_field;
     @FXML
     Button send_button;
+    @FXML
+    Parent root;
 
     private SessionManager sessionManager = SessionManager.getInstance();
     private String username;
@@ -54,6 +58,12 @@ public class ChatWindowController {
     public void appendText(String sender, String message) {
         text_field.appendText("\n");
         text_field.appendText(sender + ": " + message);
+    }
+
+    public void shutdown() {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.close();
+        sessionManager.removeChatWindowController(username, recipient);
     }
 
 }

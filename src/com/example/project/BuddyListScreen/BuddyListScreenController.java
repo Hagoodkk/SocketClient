@@ -5,6 +5,8 @@ import com.example.project.ChatWindow.ChatWindowController;
 import com.example.project.Serializable.BuddyList;
 import com.example.project.Serializable.Message;
 import com.example.project.SessionManager.SessionManager;
+import com.example.project.WelcomeScreen.WelcomeScreenController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,6 +29,10 @@ public class BuddyListScreenController {
     @FXML
     Parent root;
 
+    private Timer timer;
+
+    private ObservableList<String> listViewItems;
+
     private SessionManager sessionManager = SessionManager.getInstance();
     private Socket clientSocket = sessionManager.getClientSocket();
     private String username = sessionManager.getUsername();
@@ -45,8 +51,9 @@ public class BuddyListScreenController {
             ioe.printStackTrace();
         }
 
+        int timerInterval = 50;
         ithSecond = 0;
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -56,7 +63,7 @@ public class BuddyListScreenController {
                 } else {
                     serverOutbound = sessionManager.getOutgoingQueue().remove();
                 }
-                if (ithSecond == 1000) {
+                if (ithSecond == (timerInterval/4)) {
                     serverOutbound.setBuddyListUpdate(true);
                     serverOutbound.setBuddyList(sessionManager.getBuddyList());
                     ithSecond = 0;
@@ -66,13 +73,30 @@ public class BuddyListScreenController {
                     toServer.writeObject(serverOutbound);
                     toServer.flush();
                     Message serverInbound = (Message) fromServer.readObject();
-                    if (serverInbound.isBuddyListUpdate()) buildBuddyList(serverInbound.getBuddyList());
+                    if (serverInbound.isBuddyListUpdate()) {
+                        Platform.runLater(() -> updateBuddyList(serverInbound.getBuddyList()));
+                    }
                     if (!serverInbound.isNullMessage()) {
                         System.out.println(serverInbound.getMessage());
                         ChatWindowController controller =
                                 sessionManager.getChatWindowController(username, serverInbound.getSender());
                         if (controller != null) {
                             controller.appendText(serverInbound.getSender(), serverInbound.getMessage());
+                        } else {
+                            Platform.runLater(() -> {
+                                   ChatWindow chatWindow = new ChatWindow();
+                                   chatWindow.initData(username,
+                                           serverInbound.getSender());
+                                   try {
+                                       chatWindow.start();
+                                       ChatWindowController controller2 =
+                                               sessionManager.getChatWindowController(username, serverInbound.getSender());
+                                       controller2.appendText(serverInbound.getSender(), serverInbound.getMessage());
+                                   } catch (Exception e) {
+                                       e.printStackTrace();
+                                   }
+
+                            });
                         }
                     }
                 } catch (IOException ioe) {
@@ -81,12 +105,28 @@ public class BuddyListScreenController {
                     cnfe.printStackTrace();
                 }
             }
-        }, 0, 1);
+        }, 0, timerInterval);
     }
 
     private void buildBuddyList(BuddyList buddyList) {
-        ObservableList<String> listViewItems = FXCollections.observableArrayList(buddyList.getCurrentlyOnline());
+        listViewItems = FXCollections.observableArrayList(buddyList.getCurrentlyOnline());
         buddyListView.setItems(listViewItems);
+    }
+
+    private void updateBuddyList(BuddyList buddyList) {
+        String currentlySelected = null;
+        if (!buddyListView.getSelectionModel().isEmpty()) {
+            currentlySelected = buddyListView.getSelectionModel().getSelectedItem().toString();
+        }
+        listViewItems.clear();
+        buddyListView.getItems().clear();
+        for (String username : buddyList.getCurrentlyOnline()) {
+            listViewItems.add(username);
+        }
+        buddyListView.setItems(listViewItems);
+        if (currentlySelected != null && listViewItems.contains(currentlySelected)) {
+            buddyListView.getSelectionModel().select(currentlySelected);
+        }
     }
 
     public void handleMouseClick(MouseEvent mouseEvent) {
@@ -102,6 +142,13 @@ public class BuddyListScreenController {
                 }
             }
         }
+    }
+    public void shutdown() {
+        timer.cancel();
+        WelcomeScreenController welcomeScreenController = sessionManager.getWelcomeScreenController();
+        sessionManager.closeAllChatWindows();
+        welcomeScreenController.showStage();
+        sessionManager.nullify();
     }
 
 }
