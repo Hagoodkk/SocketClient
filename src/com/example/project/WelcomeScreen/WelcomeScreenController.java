@@ -1,7 +1,9 @@
 package com.example.project.WelcomeScreen;
 
 import com.example.project.BuddyListScreen.BuddyListScreen;
+import com.example.project.CreateAccountScreen.CreateAccountScreen;
 import com.example.project.Serializable.BuddyList;
+import com.example.project.Serializable.ServerHello;
 import com.example.project.Serializable.UserCredentials;
 import com.example.project.SessionManager.SessionManager;
 import javafx.application.Platform;
@@ -12,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -42,8 +45,19 @@ public class WelcomeScreenController {
         try {
             Socket clientSocket = new Socket(HOST_NAME, PORT_NUMBER);
             sessionManager.setClientSocket(clientSocket);
+
             ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
+
+            ServerHello serverHello = new ServerHello();
+            serverHello.setRequestLogin(true);
+            oos.writeObject(serverHello);
+            oos.flush();
+            serverHello = (ServerHello) ois.readObject();
+
+            oos = new ObjectOutputStream(clientSocket.getOutputStream());
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+
             UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername(), "");
             oos.writeObject(userCredentials);
             BuddyList buddyList = (BuddyList) ois.readObject();
@@ -53,6 +67,15 @@ public class WelcomeScreenController {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
+        }
+    }
+
+    public void handleCreateAccountButtonAction(MouseEvent mouseEvent) {
+        try {
+            CreateAccountScreen createAccountScreen = new CreateAccountScreen();
+            createAccountScreen.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
