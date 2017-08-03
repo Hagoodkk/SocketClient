@@ -4,8 +4,25 @@ import java.io.Serializable;
 
 public class Message implements Serializable{
     private String sender, recipient, message;
-    private boolean error, nullMessage, buddyListUpdate;
+    private boolean error, nullMessage, buddyListUpdate, loginRequest;
     private BuddyList buddyList;
+    private String passwordSaltedHash;
+
+    public String getPasswordSaltedHash() {
+        return passwordSaltedHash;
+    }
+
+    public void setPasswordSaltedHash(String passwordSaltedHash) {
+        this.passwordSaltedHash = passwordSaltedHash;
+    }
+
+    public boolean isLoginRequest() {
+        return loginRequest;
+    }
+
+    public void setLoginRequest(boolean loginRequest) {
+        this.loginRequest = loginRequest;
+    }
 
     public Message() {}
 

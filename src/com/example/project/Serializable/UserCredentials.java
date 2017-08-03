@@ -4,14 +4,24 @@ import java.io.Serializable;
 
 public class UserCredentials implements Serializable{
     private String username;
-    private String password;
+    private String passwordHash;
+    private String passwordSalt;
 
-    public UserCredentials(String username, String password) {
+    public UserCredentials(String username, String passwordSalt) {
         this.username = username;
-        this.password = password;
+        this.passwordSalt = passwordSalt;
     }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     public void setUsername(String username) { this.username = username; }
     public String getUsername() { return this.username; }
-    public void setPassword(String password) { this.password = password; }
-    public String getPassword() { return this.password; }
+    public void setPasswordSalt(String passwordSalt) { this.passwordSalt = passwordSalt; }
+    public String getPasswordSalt() { return this.passwordSalt; }
 }
