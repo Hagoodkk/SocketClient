@@ -3,13 +3,28 @@ package com.example.project.Serializable;
 import java.io.Serializable;
 
 public class Message implements Serializable{
-    private String sender, recipient, message;
-    private boolean error, nullMessage, buddyListUpdate, loginRequest;
+    private String sender, recipient, message, salt, passwordSaltedHash;
+    private boolean error, nullMessage, buddyListUpdate, loginRequest, saltRequest;
     private BuddyList buddyList;
-    private String passwordSaltedHash;
 
     public String getPasswordSaltedHash() {
         return passwordSaltedHash;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public boolean isSaltRequest() {
+        return saltRequest;
+    }
+
+    public void setSaltRequest(boolean saltRequest) {
+        this.saltRequest = saltRequest;
     }
 
     public void setPasswordSaltedHash(String passwordSaltedHash) {
