@@ -58,7 +58,7 @@ public class WelcomeScreenController {
             oos = new ObjectOutputStream(clientSocket.getOutputStream());
             ois = new ObjectInputStream(clientSocket.getInputStream());
 
-            UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername(), "");
+            UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername(), "", "");
             oos.writeObject(userCredentials);
             BuddyList buddyList = (BuddyList) ois.readObject();
             sessionManager.setBuddyList(buddyList);

@@ -4,20 +4,31 @@ import java.io.Serializable;
 
 public class UserCredentials implements Serializable{
     private String username;
-    private String passwordHash;
+    private String passwordSaltedHash;
     private String passwordSalt;
 
-    public UserCredentials(String username, String passwordSalt) {
+    private boolean requestAccepted;
+
+    public UserCredentials(String username, String passwordSaltedHash, String passwordSalt) {
         this.username = username;
+        this.passwordSaltedHash = passwordSaltedHash;
         this.passwordSalt = passwordSalt;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public boolean isRequestAccepted() {
+        return requestAccepted;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setRequestAccepted(boolean requestAccepted) {
+        this.requestAccepted = requestAccepted;
+    }
+
+    public String getPasswordSaltedHash() {
+        return passwordSaltedHash;
+    }
+
+    public void setPasswordSaltedHash(String passwordHash) {
+        this.passwordSaltedHash = passwordHash;
     }
 
     public void setUsername(String username) { this.username = username; }
