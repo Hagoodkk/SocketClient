@@ -2,6 +2,7 @@ package com.example.project.WelcomeScreen;
 
 import com.example.project.BuddyListScreen.BuddyListScreen;
 import com.example.project.CreateAccountScreen.CreateAccountScreen;
+import com.example.project.PasswordSalter.PasswordSalter;
 import com.example.project.Serializable.BuddyList;
 import com.example.project.Serializable.ServerHello;
 import com.example.project.Serializable.UserCredentials;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class WelcomeScreenController {
     @FXML
@@ -40,6 +42,7 @@ public class WelcomeScreenController {
 
     public void handleSignInButtonAction(ActionEvent actionEvent) {
         String username = username_field.getText();
+        String password = password_field.getText();
         sessionManager.setUsername(username);
 
         try {
@@ -58,11 +61,36 @@ public class WelcomeScreenController {
             oos = new ObjectOutputStream(clientSocket.getOutputStream());
             ois = new ObjectInputStream(clientSocket.getInputStream());
 
-            UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername(), "", "");
+            UserCredentials userCredentials = new UserCredentials(sessionManager.getUsername());
             oos.writeObject(userCredentials);
-            BuddyList buddyList = (BuddyList) ois.readObject();
-            sessionManager.setBuddyList(buddyList);
-            showBuddyList();
+            oos.flush();
+
+            userCredentials = (UserCredentials) ois.readObject();
+            PasswordSalter passwordSalter = new PasswordSalter();
+            String passwordSaltedHash = passwordSalter.getHash(password, userCredentials.getPasswordSalt());
+            userCredentials.setPasswordSaltedHash(passwordSaltedHash);
+
+            oos.writeObject(userCredentials);
+            oos.flush();
+
+            userCredentials = (UserCredentials) ois.readObject();
+
+            if (userCredentials.isRequestAccepted()) {
+                oos = new ObjectOutputStream(clientSocket.getOutputStream());
+                ois = new ObjectInputStream(clientSocket.getInputStream());
+                BuddyList buddyList = new BuddyList(new ArrayList<>());
+                oos.writeObject(buddyList);
+                oos.flush();
+
+                buddyList = (BuddyList) ois.readObject();
+                sessionManager.setBuddyList(buddyList);
+                showBuddyList();
+            } else {
+                System.out.println("Authentication unsuccessful.");
+            }
+
+
+
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {

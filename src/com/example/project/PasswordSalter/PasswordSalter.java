@@ -7,9 +7,9 @@ import java.security.SecureRandom;
 
 public class PasswordSalter {
 
-        public String getHash(String username, String salt) {
+        public String getHash(String password, String salt) {
             try {
-                String toHash = salt + username;
+                String toHash = salt + password;
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
                 byte[] encodedHash = messageDigest.digest(toHash.getBytes(StandardCharsets.UTF_8));
                 StringBuffer hexString = new StringBuffer();

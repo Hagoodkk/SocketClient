@@ -9,6 +9,10 @@ public class UserCredentials implements Serializable{
 
     private boolean requestAccepted;
 
+    public UserCredentials(String username) {
+        this.username = username;
+    }
+
     public UserCredentials(String username, String passwordSaltedHash, String passwordSalt) {
         this.username = username;
         this.passwordSaltedHash = passwordSaltedHash;
