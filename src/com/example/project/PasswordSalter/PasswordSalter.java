@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 public class PasswordSalter {
 
@@ -29,7 +30,7 @@ public class PasswordSalter {
             byte[] salt = new byte[16];
             SecureRandom random = new SecureRandom();
             random.nextBytes(salt);
-            String saltResult = new String(salt);
+            String saltResult = Base64.getEncoder().encodeToString(salt);
             return saltResult;
         }
 }
