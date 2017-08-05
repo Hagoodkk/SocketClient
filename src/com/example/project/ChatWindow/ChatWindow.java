@@ -21,7 +21,7 @@ public class ChatWindow {
         sessionManager.addChatWindowController(username, recipient, controller);
         controller.initData(username, recipient);
         Stage chatWindowStage = new Stage();
-        chatWindowStage.setTitle(username + " -> " + recipient);
+        chatWindowStage.setTitle("Chat with " + recipient);
 
         chatWindowStage.setScene(new Scene(root, 502, 344));
         chatWindowStage.setOnCloseRequest(e -> controller.shutdown());

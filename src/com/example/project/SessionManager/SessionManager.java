@@ -67,7 +67,9 @@ public class SessionManager {
     }
 
     public ChatWindowController getChatWindowController(String username, String recipient) {
-        return chatWindowControllers.get(username + " -> " + recipient);
+        ChatWindowController chatWindowController = chatWindowControllers.get(username + " -> " + recipient);
+        if (chatWindowController == null) chatWindowController = chatWindowControllers.get(recipient + " -> " + username);
+        return chatWindowController;
     }
 
     public Socket getClientSocket() {

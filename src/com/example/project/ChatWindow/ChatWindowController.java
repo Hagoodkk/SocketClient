@@ -2,6 +2,7 @@ package com.example.project.ChatWindow;
 
 import com.example.project.Serializable.Message;
 import com.example.project.SessionManager.SessionManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -73,6 +74,11 @@ public class ChatWindowController {
         Stage currentStage = (Stage) root.getScene().getWindow();
         currentStage.close();
         sessionManager.removeChatWindowController(username, recipient);
+    }
+
+    public void requestFocus() {
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        Platform.runLater(() -> currentStage.requestFocus());
     }
 
 }

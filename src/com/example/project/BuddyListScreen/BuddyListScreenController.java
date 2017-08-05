@@ -129,16 +129,22 @@ public class BuddyListScreenController {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
                 String recipient = buddyListView.getSelectionModel().getSelectedItem().toString();
-                ChatWindow chatWindow = new ChatWindow();
-                chatWindow.initData(username, recipient);
-                try {
-                    chatWindow.start();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                ChatWindowController chatWindowController = sessionManager.getChatWindowController(username, recipient);
+                if (chatWindowController != null) {
+                    chatWindowController.requestFocus();
+                } else {
+                    ChatWindow chatWindow = new ChatWindow();
+                    chatWindow.initData(username, recipient);
+                    try {
+                        chatWindow.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
+
     public void shutdown() {
         timer.cancel();
         WelcomeScreenController welcomeScreenController = sessionManager.getWelcomeScreenController();
