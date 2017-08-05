@@ -56,7 +56,7 @@ public class CreateAccountScreenController {
 
                     PasswordSalter passwordSalter = new PasswordSalter();
                     String passwordSalt = passwordSalter.getRandomSalt();
-                    String passwordSaltedHash = passwordSalter.getHash(username, passwordSalt);
+                    String passwordSaltedHash = passwordSalter.getHash(password, passwordSalt);
 
                     UserCredentials userCredentials = new UserCredentials(username, passwordSaltedHash, passwordSalt);
 

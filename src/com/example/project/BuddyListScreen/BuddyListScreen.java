@@ -23,7 +23,8 @@ public class BuddyListScreen {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double height = primaryScreenBounds.getHeight();
         double width = primaryScreenBounds.getWidth() / 8;
-        buddyListStage.setScene(new Scene(root, width, height));
+        Scene scene = new Scene(root, width, height);
+        buddyListStage.setScene(scene);
         buddyListStage.setX(primaryScreenBounds.getMinX());
         buddyListStage.setY(primaryScreenBounds.getMinY());
         buddyListStage.setOnCloseRequest(e -> buddyListScreenController.shutdown());

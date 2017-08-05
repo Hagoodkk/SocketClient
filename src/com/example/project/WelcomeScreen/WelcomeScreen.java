@@ -1,5 +1,6 @@
 package com.example.project.WelcomeScreen;
 
+import com.example.project.PasswordSalter.PasswordSalter;
 import com.example.project.SessionManager.SessionManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

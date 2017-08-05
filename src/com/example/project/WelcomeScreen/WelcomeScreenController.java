@@ -67,7 +67,9 @@ public class WelcomeScreenController {
 
             userCredentials = (UserCredentials) ois.readObject();
             PasswordSalter passwordSalter = new PasswordSalter();
+            System.out.println(userCredentials.getPasswordSalt());
             String passwordSaltedHash = passwordSalter.getHash(password, userCredentials.getPasswordSalt());
+            System.out.println(passwordSaltedHash);
             userCredentials.setPasswordSaltedHash(passwordSaltedHash);
 
             oos.writeObject(userCredentials);
