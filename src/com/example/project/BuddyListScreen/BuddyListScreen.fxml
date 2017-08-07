@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<?import java.net.URL?>
-<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="826.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.project.BuddyListScreen.BuddyListScreenController">
+<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.BuddyListScreen.BuddyListScreenController">
    <children>
-      <ListView fx:id="buddyListView" layoutX="63.0" layoutY="72.0" prefHeight="754.0" prefWidth="234.0"
-                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="0.0"
-                AnchorPane.topAnchor="72.0" onMouseClicked="#handleMouseClick"/>
+      <MenuBar prefHeight="27.0" prefWidth="291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ListView fx:id="buddyListView" layoutX="63.0" layoutY="72.0" onMouseClicked="#handleMouseClick" prefHeight="754.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0" />
+      <ImageView fx:id="buddylist_icon" fitHeight="46.0" fitWidth="59.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="753.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="27.0" />
    </children>
    <stylesheets>
-      <URL value="@ListViewStyleSheet.css"/>
+      <URL value="@ListViewStyleSheet.css" />
    </stylesheets>
 </AnchorPane>

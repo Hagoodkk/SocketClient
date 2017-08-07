@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +31,8 @@ public class WelcomeScreenController {
     private TextField username_field;
     @FXML
     private PasswordField password_field;
+    @FXML
+    private ImageView welcome_image;
 
     private final int PORT_NUMBER = 10007;
     private final String HOST_NAME = "10.0.0.88";
@@ -37,6 +41,7 @@ public class WelcomeScreenController {
 
     @FXML
     public void initialize() {
+        welcome_image.setImage(new Image("images/appIcon.jpg"));
         Platform.runLater(() -> username_field.requestFocus());
     }
 

@@ -11,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -24,6 +26,8 @@ import java.util.TimerTask;
 public class BuddyListScreenController {
     @FXML
     ListView buddyListView;
+    @FXML
+    ImageView buddylist_icon;
 
     private Timer timer;
 
@@ -39,6 +43,7 @@ public class BuddyListScreenController {
 
     @FXML
     public void initialize() {
+        buddylist_icon.setImage(new Image("images/penguin1.png"));
         buildBuddyList(sessionManager.getBuddyList());
         try {
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());

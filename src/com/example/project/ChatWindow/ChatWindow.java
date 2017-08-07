@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class ChatWindow {
         controller.initData(username, recipient);
         Stage chatWindowStage = new Stage();
         chatWindowStage.setTitle("Chat with " + recipient);
+        chatWindowStage.getIcons().add(new Image("images/penguin1.png"));
 
         chatWindowStage.setScene(new Scene(root, 502, 344));
         chatWindowStage.setOnCloseRequest(e -> controller.shutdown());
