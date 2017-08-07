@@ -23,8 +23,6 @@ public class WelcomeScreen extends Application {
         Stage welcomeScreenStage = new Stage();
         welcomeScreenStage.setTitle("Chattr");
 
-        welcomeScreenStage.setMinHeight(275);
-        welcomeScreenStage.setMinWidth(300);
         welcomeScreenStage.getIcons().add(new Image("images/appIcon.jpg"));
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -32,8 +30,8 @@ public class WelcomeScreen extends Application {
         double width = primaryScreenBounds.getWidth() / 8;
         welcomeScreenStage.setX(primaryScreenBounds.getMinX());
         welcomeScreenStage.setY(primaryScreenBounds.getMinY());
-        welcomeScreenStage.setMinHeight(height/4);
-        welcomeScreenStage.setMinWidth(width/2);
+        welcomeScreenStage.setMinHeight(height);
+        welcomeScreenStage.setMinWidth(width);
 
         welcomeScreenStage.setScene(new Scene(root, width, height));
 
