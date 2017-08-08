@@ -10,16 +10,22 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,6 +34,8 @@ public class BuddyListScreenController {
     ListView buddyListView;
     @FXML
     ImageView buddylist_icon;
+    @FXML
+    HBox buddylist_icon_hbox;
 
     private Timer timer;
 
@@ -44,6 +52,12 @@ public class BuddyListScreenController {
     @FXML
     public void initialize() {
         buddylist_icon.setImage(new Image("images/penguin1.png"));
+        buddylist_icon_hbox.setAlignment(Pos.CENTER);
+
+        Media media = new Media(getClass().getClassLoader().getResource("sounds/395798__lipsumdolor__computer-startup.wav").toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+
         buildBuddyList(sessionManager.getBuddyList());
         try {
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());

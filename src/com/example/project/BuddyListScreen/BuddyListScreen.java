@@ -20,7 +20,7 @@ public class BuddyListScreen {
         sessionManager.setBuddyListScreenController(buddyListScreenController);
         Stage buddyListStage = new Stage();
         buddyListStage.setTitle("Buddy List" + " (" + sessionManager.getUsername() + ")");
-        buddyListStage.getIcons().add(new Image("images/appIcon.jpg"));
+        buddyListStage.getIcons().add(new Image("images/appIcon.gif"));
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double height = primaryScreenBounds.getHeight();

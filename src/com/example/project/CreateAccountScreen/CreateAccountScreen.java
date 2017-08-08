@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class CreateAccountScreen extends Application {
@@ -16,6 +17,8 @@ public class CreateAccountScreen extends Application {
         Parent root = loader.load();
         Stage createAccountScreen = new Stage();
         createAccountScreen.setTitle("Create Account");
+        createAccountScreen.getIcons().add(new Image("images/appIcon.gif"));
+
         createAccountScreen.setScene(new Scene(root, 300, 275));
         createAccountScreen.setMinHeight(275);
         createAccountScreen.setMinWidth(300);

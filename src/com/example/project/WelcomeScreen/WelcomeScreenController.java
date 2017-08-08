@@ -41,7 +41,7 @@ public class WelcomeScreenController {
 
     @FXML
     public void initialize() {
-        welcome_image.setImage(new Image("images/appIcon.jpg"));
+        welcome_image.setImage(new Image("images/appIcon.gif"));
         Platform.runLater(() -> username_field.requestFocus());
     }
 

@@ -23,7 +23,7 @@ public class WelcomeScreen extends Application {
         Stage welcomeScreenStage = new Stage();
         welcomeScreenStage.setTitle("Chattr");
 
-        welcomeScreenStage.getIcons().add(new Image("images/appIcon.jpg"));
+        welcomeScreenStage.getIcons().add(new Image("images/appIcon.gif"));
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double height = primaryScreenBounds.getHeight();

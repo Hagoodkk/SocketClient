@@ -19,6 +19,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
 
@@ -42,7 +44,6 @@ public class ChatWindowController {
     private String recipient;
     private boolean firstMessage = true;
     private boolean sentLastMessage = false;
-    private boolean timeDisplayed = false;
 
     private ObservableList<HBox> chatBox;
 
@@ -86,8 +87,8 @@ public class ChatWindowController {
         currentTime = String.valueOf(currentHour) + currentTime.substring(currentTime.indexOf(":"), currentTime.length());
 
         Label timeLabel = new Label();
-        timeLabel.setText("Last message sent at " + currentTime);
-        timeLabel.setStyle("-fx-font-style: italic");
+        timeLabel.setText(currentTime);
+        timeLabel.setStyle("-fx-font-style: italic; -fx-font-size: 80%");
         timeLabel.setWrapText(true);
         timeLabel.setAlignment(Pos.TOP_CENTER);
 
@@ -96,10 +97,6 @@ public class ChatWindowController {
         timeHBox.getChildren().add(timeLabel);
 
         if (!sentLastMessage || firstMessage) {
-            if (timeDisplayed) {
-                chatBox.remove(chatBox.size()-1);
-                timeDisplayed = false;
-            }
             Image image = new Image("images/penguin1.png");
             ImageView iconPicture = new ImageView(image);
             iconPicture.setFitHeight(32);
@@ -110,26 +107,15 @@ public class ChatWindowController {
             vbox.setAlignment(Pos.TOP_RIGHT);
             hbox.getChildren().addAll(vbox, iconPicture);
 
-            Platform.runLater(() -> {
-                chatBox.add(hbox);
-                chatBox.add(timeHBox);
-                timeDisplayed = true;
-            });
+            chatBox.add(timeHBox);
+            chatBox.add(hbox);
 
         } else {
-            if (timeDisplayed) {
-                chatBox.remove(chatBox.size()-1);
-                timeDisplayed = false;
-            }
             Label newLabel = new Label();
             newLabel.setWrapText(true);
             newLabel.setText(message);
             VBox oldVBox = (VBox) chatBox.get(chatBox.size()-1).getChildren().get(0);
             oldVBox.getChildren().add(newLabel);
-            Platform.runLater(() -> {
-                chatBox.add(timeHBox);
-                timeDisplayed = true;
-            });
         }
 
         Platform.runLater(() -> list_view.scrollTo(chatBox.size()-1));
@@ -138,6 +124,10 @@ public class ChatWindowController {
         input_field.requestFocus();
         sentLastMessage = true;
         firstMessage = false;
+
+        Media media = new Media(getClass().getClassLoader().getResource("sounds/266455__infinitelifespan__notify.wav").toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     public void initData(String username, String recipient) {
@@ -154,8 +144,8 @@ public class ChatWindowController {
         currentTime = String.valueOf(currentHour) + currentTime.substring(currentTime.indexOf(":"), currentTime.length());
 
         Label timeLabel = new Label();
-        timeLabel.setText("Last message sent at " + currentTime);
-        timeLabel.setStyle("-fx-font-style: italic");
+        timeLabel.setText(currentTime);
+        timeLabel.setStyle("-fx-font-style: italic; -fx-font-size: 80%");
         timeLabel.setWrapText(true);
         timeLabel.setAlignment(Pos.TOP_CENTER);
 
@@ -164,10 +154,6 @@ public class ChatWindowController {
         timeHBox.getChildren().add(timeLabel);
 
         if (sentLastMessage || firstMessage) {
-            if (timeDisplayed) {
-                Platform.runLater(() -> chatBox.remove(chatBox.size()-1));
-                timeDisplayed = false;
-            }
             Image image = new Image("images/penguin2.png");
             ImageView iconPicture = new ImageView(image);
             iconPicture.setFitHeight(32);
@@ -188,23 +174,16 @@ public class ChatWindowController {
 
             hbox.getChildren().addAll(iconPicture, vbox);
             Platform.runLater(() -> {
-                chatBox.add(hbox);
                 chatBox.add(timeHBox);
-                timeDisplayed = true;
+                chatBox.add(hbox);
             });
         } else {
-            if (timeDisplayed) {
-                Platform.runLater(() -> chatBox.remove(chatBox.size()-1));
-                timeDisplayed = false;
-            }
             Label newLabel = new Label();
             newLabel.setWrapText(true);
             newLabel.setText(message);
             Platform.runLater(() -> {
                 VBox oldVBox = (VBox) chatBox.get(chatBox.size()-1).getChildren().get(1);
                 oldVBox.getChildren().add(newLabel);
-                chatBox.add(timeHBox);
-                timeDisplayed = true;
             });
         }
 
@@ -212,6 +191,10 @@ public class ChatWindowController {
 
         sentLastMessage = false;
         firstMessage = false;
+
+        Media media = new Media(getClass().getClassLoader().getResource("sounds/380482__josepharaoh99__chime-notification.wav").toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     public void shutdown() {
