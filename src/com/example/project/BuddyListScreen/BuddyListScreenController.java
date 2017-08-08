@@ -2,6 +2,7 @@ package com.example.project.BuddyListScreen;
 
 import com.example.project.ChatWindow.ChatWindow;
 import com.example.project.ChatWindow.ChatWindowController;
+import com.example.project.Serializable.Buddy;
 import com.example.project.Serializable.BuddyList;
 import com.example.project.Serializable.Message;
 import com.example.project.SessionManager.SessionManager;
@@ -26,6 +27,7 @@ import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -122,7 +124,12 @@ public class BuddyListScreenController {
     }
 
     private void buildBuddyList(BuddyList buddyList) {
-        listViewItems = FXCollections.observableArrayList(buddyList.getCurrentlyOnline());
+        ArrayList<String> currentlyOnline = new ArrayList<>();
+        for (Buddy buddy : buddyList.getCurrentlyOnline()) {
+            currentlyOnline.add(buddy.getDisplayName());
+        }
+
+        listViewItems = FXCollections.observableArrayList(currentlyOnline);
         buddyListView.setItems(listViewItems);
     }
 
@@ -133,8 +140,8 @@ public class BuddyListScreenController {
         }
         listViewItems.clear();
         buddyListView.getItems().clear();
-        for (String username : buddyList.getCurrentlyOnline()) {
-            listViewItems.add(username);
+        for (Buddy buddy : buddyList.getCurrentlyOnline()) {
+            listViewItems.add(buddy.getDisplayName());
         }
         buddyListView.setItems(listViewItems);
         if (currentlySelected != null && listViewItems.contains(currentlySelected)) {

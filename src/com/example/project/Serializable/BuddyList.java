@@ -4,31 +4,41 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BuddyList implements Serializable {
-    private ArrayList<String> buddyList;
-    private ArrayList<String> currentlyOnline;
-    private ArrayList<String> currentlyOffline;
+    private ArrayList<Buddy> buddies;
+    private ArrayList<Buddy> currentlyOnline;
+    private ArrayList<Buddy> currentlyOffline;
 
-    public BuddyList(ArrayList<String> buddyList) {
-        this.buddyList = buddyList;
+    public BuddyList() {
+        this.buddies = new ArrayList<>();
         this.currentlyOffline = new ArrayList<>();
         this.currentlyOnline = new ArrayList<>();
     }
-    public void setBuddyList(ArrayList<String> buddyList) { this.buddyList = buddyList; }
-    public ArrayList<String> getBuddies() { return this.buddyList; }
 
-    public ArrayList<String> getCurrentlyOnline() {
+    public ArrayList<Buddy> getBuddies() {
+        return buddies;
+    }
+
+    public void setBuddies(ArrayList<Buddy> buddies) {
+        this.buddies = buddies;
+    }
+
+    public void addBuddy(Buddy buddy) {
+        if (!buddies.contains(buddy)) buddies.add(buddy);
+    }
+
+    public ArrayList<Buddy> getCurrentlyOnline() {
         return currentlyOnline;
     }
 
-    public void setCurrentlyOnline(ArrayList<String> currentlyOnline) {
+    public void setCurrentlyOnline(ArrayList<Buddy> currentlyOnline) {
         this.currentlyOnline = currentlyOnline;
     }
 
-    public ArrayList<String> getCurrentlyOffline() {
+    public ArrayList<Buddy> getCurrentlyOffline() {
         return currentlyOffline;
     }
 
-    public void setCurrentlyOffline(ArrayList<String> currentlyOffline) {
+    public void setCurrentlyOffline(ArrayList<Buddy> currentlyOffline) {
         this.currentlyOffline = currentlyOffline;
     }
 }

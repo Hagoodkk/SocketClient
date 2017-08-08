@@ -85,7 +85,7 @@ public class WelcomeScreenController {
             if (userCredentials.isRequestAccepted()) {
                 oos = new ObjectOutputStream(clientSocket.getOutputStream());
                 ois = new ObjectInputStream(clientSocket.getInputStream());
-                BuddyList buddyList = new BuddyList(new ArrayList<>());
+                BuddyList buddyList = new BuddyList();
                 oos.writeObject(buddyList);
                 oos.flush();
 
