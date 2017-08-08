@@ -72,13 +72,14 @@ public class BuddyListScreenController {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                Platform.runLater(() -> {
                 Message serverOutbound;
                 if (sessionManager.getOutgoingQueue().isEmpty()) {
                     serverOutbound = new Message(true);
                 } else {
                     serverOutbound = sessionManager.getOutgoingQueue().remove();
                 }
-                if (ithSecond == (timerInterval/4)) {
+                if (ithSecond == (timerInterval / 4)) {
                     serverOutbound.setBuddyListUpdate(true);
                     serverOutbound.setBuddyList(sessionManager.getBuddyList());
                     ithSecond = 0;
@@ -89,7 +90,7 @@ public class BuddyListScreenController {
                     toServer.flush();
                     Message serverInbound = (Message) fromServer.readObject();
                     if (serverInbound.isBuddyListUpdate()) {
-                        Platform.runLater(() -> updateBuddyList(serverInbound.getBuddyList()));
+                        updateBuddyList(serverInbound.getBuddyList());
                     }
                     if (!serverInbound.isNullMessage()) {
                         System.out.println(serverInbound.getMessage());
@@ -98,20 +99,16 @@ public class BuddyListScreenController {
                         if (controller != null) {
                             controller.appendText(serverInbound.getSender(), serverInbound.getMessage());
                         } else {
-                            Platform.runLater(() -> {
-                                   ChatWindow chatWindow = new ChatWindow();
-                                   chatWindow.initData(username,
-                                           serverInbound.getSender());
-                                   try {
-                                       chatWindow.start();
-                                       ChatWindowController controller2 =
-                                               sessionManager.getChatWindowController(username, serverInbound.getSender());
-                                       controller2.appendText(serverInbound.getSender(), serverInbound.getMessage());
-                                   } catch (Exception e) {
-                                       e.printStackTrace();
-                                   }
-
-                            });
+                            ChatWindow chatWindow = new ChatWindow();
+                            chatWindow.initData(username, serverInbound.getSender());
+                            try {
+                                chatWindow.start();
+                                ChatWindowController controller2 =
+                                        sessionManager.getChatWindowController(username, serverInbound.getSender());
+                                controller2.appendText(serverInbound.getSender(), serverInbound.getMessage());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 } catch (IOException ioe) {
@@ -119,6 +116,7 @@ public class BuddyListScreenController {
                 } catch (ClassNotFoundException cnfe) {
                     cnfe.printStackTrace();
                 }
+            });
             }
         }, 0, timerInterval);
     }

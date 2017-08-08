@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/appIcon.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sounds/266455__infinitelifespan__notify.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sounds/380482__josepharaoh99__chime-notification.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sounds/395798__lipsumdolor__computer-startup.wav" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SocketClient/images/appIcon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/appIcon.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreenController$1.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreenController$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreenController.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreenController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/ChatWindow/ChatWindowController.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/ChatWindow/ChatWindowController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/CreateAccountScreen/CreateAccountScreen.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/CreateAccountScreen/CreateAccountScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/WelcomeScreen/WelcomeScreen.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/WelcomeScreen/WelcomeScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/WelcomeScreen/WelcomeScreenController.class" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/WelcomeScreen/WelcomeScreenController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreen.fxml" afterPath="$PROJECT_DIR$/out/production/SocketClient/com/example/project/BuddyListScreen/BuddyListScreen.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.fxml" afterPath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.java" afterPath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java" afterPath="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindowController.java" afterPath="$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindowController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/CreateAccountScreen/CreateAccountScreen.java" afterPath="$PROJECT_DIR$/src/com/example/project/CreateAccountScreen/CreateAccountScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreen.java" afterPath="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreenController.java" afterPath="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreenController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,7 +66,7 @@
       <file leaf-file-name="WelcomeScreenController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreenController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
+            <state relative-caret-position="1734">
               <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding />
             </state>
@@ -115,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatWindowController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChatWindowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="628">
-              <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+            <state relative-caret-position="130">
+              <caret line="137" column="59" lean-forward="true" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -132,10 +115,6 @@
               <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding>
                 <marker date="1502150650084" expanded="true" signature="1603:1670" ph="..." />
-                <marker date="1502150650084" expanded="true" signature="1603:1684" ph="..." />
-                <marker date="1502150650084" expanded="true" signature="1603:1699" ph="..." />
-                <marker date="1502150650084" expanded="true" signature="1603:1794" ph="..." />
-                <marker date="1502150650084" expanded="true" signature="1716:1780" ph="..." />
               </folding>
             </state>
           </provider>
@@ -154,21 +133,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuddyListScreenController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BuddyListScreenController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="58" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="221">
+              <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+              <folding>
+                <element signature="e#2442#4913#0" expanded="true" />
+                <element signature="e#4912#4913#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SessionManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/project/SessionManager/SessionManager.java">
+      <file leaf-file-name="ChatWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -256,12 +238,12 @@
         <option value="$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindow.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreen.fxml" />
         <option value="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.fxml" />
-        <option value="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreen.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreenController.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/CreateAccountScreen/CreateAccountScreen.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreen.java" />
         <option value="$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindowController.java" />
+        <option value="$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java" />
       </list>
     </option>
   </component>
@@ -297,6 +279,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,9 +370,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -591,11 +573,12 @@
       <workItem from="1502121005591" duration="13804000" />
       <workItem from="1502137392269" duration="4805000" />
       <workItem from="1502149419439" duration="4701000" />
+      <workItem from="1502154942639" duration="1247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116070000" />
+    <option name="totallyTimeSpent" value="117317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -609,14 +592,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2379125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17191097" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15546875" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -633,6 +615,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -947,14 +930,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="57" lean-forward="false" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/project/SessionManager/SessionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -981,23 +956,11 @@
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <marker date="1502150650084" expanded="true" signature="1603:1670" ph="..." />
-            <marker date="1502150650084" expanded="true" signature="1603:1684" ph="..." />
-            <marker date="1502150650084" expanded="true" signature="1603:1699" ph="..." />
-            <marker date="1502150650084" expanded="true" signature="1603:1794" ph="..." />
-            <marker date="1502150650084" expanded="true" signature="1716:1780" ph="..." />
           </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="58" selection-end-column="27" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreen.java">
@@ -1028,7 +991,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/project/WelcomeScreen/WelcomeScreenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
+        <state relative-caret-position="1734">
           <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding />
         </state>
@@ -1044,9 +1007,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="183" column="37" lean-forward="false" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+        <state relative-caret-position="130">
+          <caret line="137" column="59" lean-forward="true" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/project/ChatWindow/ChatWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/project/BuddyListScreen/BuddyListScreenController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+          <folding>
+            <element signature="e#2442#4913#0" expanded="true" />
+            <element signature="e#4912#4913#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
