@@ -28,7 +28,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -104,6 +103,12 @@ public class BuddyListScreenController {
                     Message serverInbound = (Message) fromServer.readObject();
                     if (serverInbound.isBuddyListUpdate()) {
                         updateBuddyList(serverInbound.getBuddyList());
+                    }
+                    if (serverInbound.isLogOnEvent()) {
+                        System.out.println(serverInbound.getLogOn() + " connected.");
+                    }
+                    if (serverInbound.isLogOutEvent()) {
+                        System.out.println(serverInbound.getLogOut() + " disconnected.");
                     }
                     if (!serverInbound.isNullMessage()) {
                         System.out.println(serverInbound.getMessage());
