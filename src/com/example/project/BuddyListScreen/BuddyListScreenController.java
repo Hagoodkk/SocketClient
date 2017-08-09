@@ -8,32 +8,34 @@ import com.example.project.Serializable.Message;
 import com.example.project.SessionManager.SessionManager;
 import com.example.project.WelcomeScreen.WelcomeScreenController;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
+
 import java.net.Socket;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class BuddyListScreenController {
     @FXML
-    ListView buddyListView;
+    TreeView buddy_list_tree;
     @FXML
     ImageView buddylist_icon;
     @FXML
@@ -41,7 +43,6 @@ public class BuddyListScreenController {
 
     private Timer timer;
 
-    private ObservableList<String> listViewItems;
 
     private SessionManager sessionManager = SessionManager.getInstance();
     private Socket clientSocket = sessionManager.getClientSocket();
@@ -51,16 +52,26 @@ public class BuddyListScreenController {
     private ObjectOutputStream toServer;
     private ObjectInputStream fromServer;
 
+    private TreeItem<HBox> getTreeItem(HBox hbox, Label label, boolean rootItem, boolean groupItem) {
+        if (rootItem) hbox.setAlignment(Pos.CENTER);
+        if (rootItem) label.setStyle("-fx-font-size: 150%");
+        if (groupItem) label.setStyle("-fx-font-size: 125%");
+
+        hbox.getChildren().add(label);
+        TreeItem<HBox> treeItem = new TreeItem<>(hbox);
+        treeItem.setExpanded(true);
+        return treeItem;
+    }
+
     @FXML
     public void initialize() {
-        buddylist_icon.setImage(new Image("images/penguin1.png"));
-        buddylist_icon_hbox.setAlignment(Pos.CENTER);
+
+        buildBuddyList(sessionManager.getBuddyList());
 
         Media media = new Media(getClass().getClassLoader().getResource("sounds/395798__lipsumdolor__computer-startup.wav").toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
 
-        buildBuddyList(sessionManager.getBuddyList());
         try {
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             fromServer = new ObjectInputStream(clientSocket.getInputStream());
@@ -124,35 +135,51 @@ public class BuddyListScreenController {
     }
 
     private void buildBuddyList(BuddyList buddyList) {
-        ArrayList<String> currentlyOnline = new ArrayList<>();
-        for (Buddy buddy : buddyList.getCurrentlyOnline()) {
-            currentlyOnline.add(buddy.getDisplayName());
+
+        TreeItem<HBox> rootItem = getTreeItem(new HBox(), new Label("Contacts"), true, false);
+        TreeItem<HBox> offline = getTreeItem(new HBox(), new Label("Offline"), false, true);
+        buddy_list_tree.setRoot(rootItem);
+
+        HashMap<String, TreeItem<HBox>> groups = new HashMap<>();
+        groups.put("root", rootItem);
+        groups.put("Offline", offline);
+        for (Buddy buddy : buddyList.getBuddies()) {
+            if (groups.get(buddy.getGroupName()) == null) {
+                TreeItem<HBox> groupItem = getTreeItem(new HBox(), new Label(buddy.getGroupName()), false, true);
+                groups.put(buddy.getGroupName(), groupItem);
+                rootItem.getChildren().add(groupItem);
+            }
         }
 
-        listViewItems = FXCollections.observableArrayList(currentlyOnline);
-        buddyListView.setItems(listViewItems);
+        for (Buddy buddy : buddyList.getCurrentlyOnline()) {
+            TreeItem<HBox> relevantGroup = groups.get(buddy.getGroupName());
+            relevantGroup.getChildren().add(getTreeItem(new HBox(), new Label(buddy.getDisplayName()), false, false));
+        }
+
+        rootItem.getChildren().add(offline);
+        for (Buddy buddy : buddyList.getCurrentlyOffline()) {
+            offline.getChildren().add(getTreeItem(new HBox(), new Label(buddy.getDisplayName()), false, false));
+        }
+
+        buddylist_icon.setImage(new Image("images/penguin1.png"));
+        buddylist_icon_hbox.setAlignment(Pos.CENTER);
+        buddylist_icon_hbox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2, 2, 2, 2))));
     }
 
     private void updateBuddyList(BuddyList buddyList) {
-        String currentlySelected = null;
-        if (!buddyListView.getSelectionModel().isEmpty()) {
-            currentlySelected = buddyListView.getSelectionModel().getSelectedItem().toString();
-        }
-        listViewItems.clear();
-        buddyListView.getItems().clear();
-        for (Buddy buddy : buddyList.getCurrentlyOnline()) {
-            listViewItems.add(buddy.getDisplayName());
-        }
-        buddyListView.setItems(listViewItems);
-        if (currentlySelected != null && listViewItems.contains(currentlySelected)) {
-            buddyListView.getSelectionModel().select(currentlySelected);
-        }
+
     }
 
     public void handleMouseClick(MouseEvent mouseEvent) {
+        TreeItem<HBox> treeItem = (TreeItem<HBox>) buddy_list_tree.getSelectionModel().getSelectedItem();
+        if (treeItem == null) return;
+        HBox hbox = treeItem.getValue();
+        Label label = (Label) hbox.getChildren().get(0);
+
+        if (!treeItem.isLeaf()) return;
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
-                String recipient = buddyListView.getSelectionModel().getSelectedItem().toString();
+                String recipient = label.getText();
                 ChatWindowController chatWindowController = sessionManager.getChatWindowController(username, recipient);
                 if (chatWindowController != null) {
                     chatWindowController.requestFocus();
@@ -170,6 +197,7 @@ public class BuddyListScreenController {
     }
 
     public void shutdown() {
+
         timer.cancel();
         WelcomeScreenController welcomeScreenController = sessionManager.getWelcomeScreenController();
         sessionManager.closeAllChatWindows();

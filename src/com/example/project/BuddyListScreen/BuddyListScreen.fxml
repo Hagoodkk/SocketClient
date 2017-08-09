@@ -28,10 +28,10 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="buddyListView" layoutX="82.0" layoutY="96.0" onMouseClicked="#handleMouseClick" prefHeight="730.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="96.0" />
+      <TreeView fx:id="buddy_list_tree" layoutX="82.0" layoutY="96.0" onMouseClicked="#handleMouseClick" prefHeight="730.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="96.0"/>
       <HBox fx:id="buddylist_icon_hbox" layoutY="26.0" prefHeight="71.0" prefWidth="83.0">
          <children>
-            <ImageView fx:id="buddylist_icon" fitHeight="71.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="buddylist_icon" fitHeight="71.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true"/>
          </children>
       </HBox>
    </children>

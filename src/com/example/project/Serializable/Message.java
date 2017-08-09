@@ -3,9 +3,41 @@ package com.example.project.Serializable;
 import java.io.Serializable;
 
 public class Message implements Serializable{
-    private String sender, recipient, message, salt, passwordSaltedHash;
-    private boolean error, nullMessage, buddyListUpdate, loginRequest, saltRequest;
+    private String sender, recipient, message, salt, passwordSaltedHash, logOn, logOut;
+    private boolean error, nullMessage, buddyListUpdate, loginRequest, saltRequest, logOnEvent, logOutEvent;
     private BuddyList buddyList;
+
+    public String getLogOn() {
+        return logOn;
+    }
+
+    public void setLogOn(String logOn) {
+        this.logOn = logOn;
+    }
+
+    public String getLogOut() {
+        return logOut;
+    }
+
+    public void setLogOut(String logOut) {
+        this.logOut = logOut;
+    }
+
+    public boolean isLogOnEvent() {
+        return logOnEvent;
+    }
+
+    public void setLogOnEvent(boolean logOnEvent) {
+        this.logOnEvent = logOnEvent;
+    }
+
+    public boolean isLogOutEvent() {
+        return logOutEvent;
+    }
+
+    public void setLogOutEvent(boolean logOutEvent) {
+        this.logOutEvent = logOutEvent;
+    }
 
     public String getPasswordSaltedHash() {
         return passwordSaltedHash;
