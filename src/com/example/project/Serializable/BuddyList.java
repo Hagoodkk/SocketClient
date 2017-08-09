@@ -41,4 +41,21 @@ public class BuddyList implements Serializable {
     public void setCurrentlyOffline(ArrayList<Buddy> currentlyOffline) {
         this.currentlyOffline = currentlyOffline;
     }
+
+    public String getGroupName(String buddyName) {
+        for (Buddy buddy : buddies) {
+            if (buddy.getDisplayName().equals(buddyName)) {
+                return buddy.getGroupName();
+            }
+        }
+        return null;
+    }
+
+
+    public boolean hasBuddy(String buddyName) {
+        for (Buddy buddy : buddies) {
+            if (buddy.getDisplayName().equals(buddyName)) return true;
+        }
+        return false;
+    }
 }
