@@ -42,10 +42,10 @@ public class BuddyListScreenController {
 
     private Timer timer;
 
-
     private SessionManager sessionManager = SessionManager.getInstance();
     private Socket clientSocket = sessionManager.getClientSocket();
     private String username = sessionManager.getUsername();
+    private String displayName = sessionManager.getDisplayName();
     private int ithSecond;
 
     private ObjectOutputStream toServer;
@@ -68,6 +68,7 @@ public class BuddyListScreenController {
 
     @FXML
     public void initialize() {
+        System.out.println("This is " + username + "'s debug screen.");
         BuddyList buddyList = sessionManager.getBuddyList();
         System.out.println(buddyList.getCurrentlyOnline().size());
 
@@ -166,14 +167,14 @@ public class BuddyListScreenController {
             System.out.println(buddy.getDisplayName());
             TreeItem<HBox> relevantGroup = groups.get(buddy.getGroupName());
             TreeItem<HBox> treeItem = getTreeItem(new HBox(), new Label(buddy.getDisplayName()), false, false);
-            onlineUsers.put(buddy.getDisplayName(), treeItem);
+            onlineUsers.put(buddy.getDisplayName().toLowerCase(), treeItem);
             relevantGroup.getChildren().add(treeItem);
         }
 
         rootItem.getChildren().add(offline);
         for (Buddy buddy : buddyList.getCurrentlyOffline()) {
             TreeItem<HBox> treeItem = getTreeItem(new HBox(), new Label(buddy.getDisplayName()), false, false);
-            offlineUsers.put(buddy.getDisplayName(), treeItem);
+            offlineUsers.put(buddy.getDisplayName().toLowerCase(), treeItem);
             offline.getChildren().add(treeItem);
         }
 
@@ -183,23 +184,30 @@ public class BuddyListScreenController {
     }
 
     private void updateBuddyList(String sender, int state) {
+        System.out.println("1");
+        System.out.println(sender);
         if (!sessionManager.getBuddyList().hasBuddy(sender)) return;
+        System.out.println("2");
         String groupName = sessionManager.getBuddyList().getGroupName(sender);
 
         if (state == 0) {
             System.out.println(sender + " connected.");
-            TreeItem<HBox> treeItem = offlineUsers.get(sender);
+            for (String group : groups.keySet()) {
+                System.out.println("Printing groups hash.");
+                System.out.println(group);
+            }
+            TreeItem<HBox> treeItem = offlineUsers.get(sender.toLowerCase());
             groups.get(groupName).getChildren().add(treeItem);
             groups.get("offline").getChildren().remove(treeItem);
-            offlineUsers.remove(sender);
-            onlineUsers.put(sender, treeItem);
+            offlineUsers.remove(sender.toLowerCase());
+            onlineUsers.put(sender.toLowerCase(), treeItem);
         } else if (state == 1) {
             System.out.println(sender + " disconnected.");
-            TreeItem<HBox> treeItem = onlineUsers.get(sender);
+            TreeItem<HBox> treeItem = onlineUsers.get(sender.toLowerCase());
             groups.get(groupName).getChildren().remove(treeItem);
             groups.get("offline").getChildren().add(treeItem);
-            onlineUsers.remove(sender);
-            offlineUsers.put(sender, treeItem);
+            onlineUsers.remove(sender.toLowerCase());
+            offlineUsers.put(sender.toLowerCase(), treeItem);
         }
     }
 
@@ -213,7 +221,7 @@ public class BuddyListScreenController {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
                 String recipient = label.getText();
-                ChatWindowController chatWindowController = sessionManager.getChatWindowController(username, recipient);
+                ChatWindowController chatWindowController = sessionManager.getChatWindowController(username, recipient.toLowerCase());
                 if (chatWindowController != null) {
                     chatWindowController.requestFocus();
                 } else {

@@ -46,8 +46,10 @@ public class WelcomeScreenController {
     }
 
     public void handleSignInButtonAction(ActionEvent actionEvent) {
-        String username = username_field.getText();
+        String displayName = username_field.getText();
+        String username = displayName.toLowerCase();
         String password = password_field.getText();
+
         sessionManager.setUsername(username);
 
         try {
@@ -72,9 +74,7 @@ public class WelcomeScreenController {
 
             userCredentials = (UserCredentials) ois.readObject();
             PasswordSalter passwordSalter = new PasswordSalter();
-            System.out.println(userCredentials.getPasswordSalt());
             String passwordSaltedHash = passwordSalter.getHash(password, userCredentials.getPasswordSalt());
-            System.out.println(passwordSaltedHash);
             userCredentials.setPasswordSaltedHash(passwordSaltedHash);
 
             oos.writeObject(userCredentials);
@@ -83,6 +83,8 @@ public class WelcomeScreenController {
             userCredentials = (UserCredentials) ois.readObject();
 
             if (userCredentials.isRequestAccepted()) {
+                sessionManager.setUsername(userCredentials.getUsername());
+                sessionManager.setDisplayName(userCredentials.getDisplayName());
                 oos = new ObjectOutputStream(clientSocket.getOutputStream());
                 ois = new ObjectInputStream(clientSocket.getInputStream());
                 BuddyList buddyList = new BuddyList();

@@ -16,12 +16,21 @@ public class SessionManager {
     private static SessionManager sessionManager;
 
     private String username;
+    private String displayName;
     private Socket clientSocket;
     private BuddyList buddyList;
     private Queue<Message> outgoingQueue;
     private WelcomeScreenController welcomeScreenController;
     private BuddyListScreenController buddyListScreenController;
     private HashMap<String, ChatWindowController> chatWindowControllers;
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
     public void nullify() {
         username = null;
@@ -59,14 +68,20 @@ public class SessionManager {
     }
 
     public void addChatWindowController(String username, String recipient, ChatWindowController chatWindowController) {
+        username = username.toLowerCase();
+        recipient = recipient.toLowerCase();
         chatWindowControllers.put(username + " -> " + recipient, chatWindowController);
     }
 
     public void removeChatWindowController(String username, String recipient) {
+        username = username.toLowerCase();
+        recipient = recipient.toLowerCase();
         chatWindowControllers.remove(username + " -> " + recipient);
     }
 
     public ChatWindowController getChatWindowController(String username, String recipient) {
+        username = username.toLowerCase();
+        recipient = recipient.toLowerCase();
         ChatWindowController chatWindowController = chatWindowControllers.get(username + " -> " + recipient);
         if (chatWindowController == null) chatWindowController = chatWindowControllers.get(recipient + " -> " + username);
         return chatWindowController;

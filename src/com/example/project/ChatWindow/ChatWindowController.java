@@ -42,6 +42,7 @@ public class ChatWindowController {
     private SessionManager sessionManager = SessionManager.getInstance();
     private String username;
     private String recipient;
+
     private boolean firstMessage = true;
     private boolean sentLastMessage = false;
 

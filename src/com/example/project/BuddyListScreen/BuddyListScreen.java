@@ -13,13 +13,12 @@ public class BuddyListScreen {
     private SessionManager sessionManager = SessionManager.getInstance();
 
     public void start() throws Exception{
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BuddyListScreen.fxml"));
         Parent root = loader.load();
         BuddyListScreenController buddyListScreenController = loader.getController();
         sessionManager.setBuddyListScreenController(buddyListScreenController);
         Stage buddyListStage = new Stage();
-        buddyListStage.setTitle("Buddy List" + " (" + sessionManager.getUsername() + ")");
+        buddyListStage.setTitle("Buddy List" + " (" + sessionManager.getDisplayName() + ")");
         buddyListStage.getIcons().add(new Image("images/appIcon.gif"));
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();

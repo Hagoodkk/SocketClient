@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class UserCredentials implements Serializable{
     private String username;
+    private String displayName;
     private String passwordSaltedHash;
     private String passwordSalt;
 
@@ -17,6 +18,14 @@ public class UserCredentials implements Serializable{
         this.username = username;
         this.passwordSaltedHash = passwordSaltedHash;
         this.passwordSalt = passwordSalt;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public boolean isRequestAccepted() {

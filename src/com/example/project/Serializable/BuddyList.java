@@ -44,17 +44,16 @@ public class BuddyList implements Serializable {
 
     public String getGroupName(String buddyName) {
         for (Buddy buddy : buddies) {
-            if (buddy.getDisplayName().equals(buddyName)) {
+            if (buddy.getUsername().equals(buddyName)) {
                 return buddy.getGroupName();
             }
         }
         return null;
     }
 
-
     public boolean hasBuddy(String buddyName) {
         for (Buddy buddy : buddies) {
-            if (buddy.getDisplayName().equals(buddyName)) return true;
+            if (buddy.getUsername().equals(buddyName)) return true;
         }
         return false;
     }
